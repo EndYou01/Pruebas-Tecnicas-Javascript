@@ -3,13 +3,22 @@
 //Ejercicio 1
 
 const arr = [9, 5, '2', 'ab2', '3', -1, 'ab1']  // to be sorted
-const arr2 = [-1, 1, 10000, '2', '3', 400, 5, 9, 'ab1', 'ab2', 'bgt']
+const arr2 = [-1, 1, 10000, '2', 'bgt', '3', 400, 5, 9, 'ab1', 'ab2', 'a1', 'c4', 'b2', 'a3']
 // [-1, '2', '3', 5, 9, 'ab1', ab2']  // expected result
 // #javascript #sort #alfanumeric
 
 function sortAlfanumeric (array){ 
-    return array.sort((a,b)=> {
-        return a - b
+    let result = []
+
+    arr.forEach(element => {
+        result.push(element.toString())
+    });
+
+    return result.sort((a, b) => {
+        if(a > b){
+            return a - b
+        }
+        return a.localeCompare(b);
     })
 }
 
@@ -60,7 +69,6 @@ function searchMinMax(array){
         if(!result.includes(Date.parse(element))){
             result.push(Date.parse(element))
         }
-        console.log(Date.parse(element))
     })
 
     result.sort()
