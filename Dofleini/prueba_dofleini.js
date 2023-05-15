@@ -10,7 +10,7 @@ const arr2 = [-1, 1, 10000, '2', 'bgt', '3', 400, 5, 9, 'ab1', 'ab2', 'a1', 'c4'
 function sortAlfanumeric (array){ 
     let result = []
 
-    arr.forEach(element => {
+    array.forEach(element => {
         result.push(element.toString())
     });
 
