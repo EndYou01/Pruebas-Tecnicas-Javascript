@@ -27,16 +27,62 @@
 //                    [4, 4]]
 // There are four 3 × 3 squares in the input image, so there should be four integers in the blurred output. To get the first value: (7 + 4 + 0 + 5 + 6 + 2 + 6 + 10 + 7) = 47 / 9 = 5.2222 = 5. The other three integers are obtained the same way, then the surrounding integers are cropped from the final result.
 
-const image = [[7, 4, 0, 1],
-[5, 6, 2, 2],
-[6, 10, 7, 8],
-[1, 4, 2, 0]]
+const image = [
+    [7, 4, 0, 1],
+    [5, 6, 2, 2],
+    [6, 10, 7, 8],
+    [1, 4, 2, 0]
+]
 
 
 function solution(image) {
 
+    let totalSquare = 0
 
-    return image
+    let result = [[]]
+
+    let rows = 0
+
+    let firstLoop = false
+    while (rows + 3 <= image.length) {
+        let columns = 0
+        while (columns + 3 <= image[0].length) {
+            let i = rows
+            let totalSquares = 0
+            while (i < (rows + 3)) {
+                let j = columns
+
+                while (j < (columns + 3)) {
+                    // console.log({ i, j })
+                    // console.log(image[i][j])
+                    totalSquares += image[i][j]
+
+                    j++
+                }
+
+                i++
+            }
+            // result [rows][columns] = Math.floor(totalSquares/9)
+            if(firstLoop){
+                console.log('Math.floor(totalSquares/9) '+Math.floor(totalSquares/9))
+                result[1] = []
+                console.log({rows, columns})
+                result[rows][columns] = (Math.floor(totalSquares / 9))
+                console.log({result})
+            }else{
+                result[0].push((Math.floor(totalSquares / 9)))
+            }
+
+
+            totalSquare += 0.5
+            columns++
+            firstLoop = true
+        }
+        totalSquare++
+        rows++
+    }
+
+    return result
 }
 
 
