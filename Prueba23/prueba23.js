@@ -34,56 +34,85 @@ const image = [
     [1, 4, 2, 0]
 ]
 
+const image2 =
+    [[1, 1, 1],
+    [1, 7, 1],
+    [1, 1, 1]]
 
-function solution(image) {
 
-    let totalSquare = 0
+const image3 =
+    [[36, 0, 18, 9],
+    [27, 54, 9, 0],
+    [81, 63, 72, 45]]
 
-    let result = [[]]
+const image4 =
+    [[36, 0, 18, 9, 9, 45, 27],
+    [27, 0, 54, 9, 0, 63, 90],
+    [81, 63, 72, 45, 18, 27, 0],
+    [0, 0, 9, 81, 27, 18, 45],
+    [45, 45, 27, 27, 90, 81, 72],
+    [45, 18, 9, 0, 9, 18, 45],
+    [27, 81, 36, 63, 63, 72, 81]]
 
-    let rows = 0
 
-    let firstLoop = false
-    while (rows + 3 <= image.length) {
-        let columns = 0
-        while (columns + 3 <= image[0].length) {
-            let i = rows
-            let totalSquares = 0
-            while (i < (rows + 3)) {
-                let j = columns
-
-                while (j < (columns + 3)) {
-                    // console.log({ i, j })
-                    // console.log(image[i][j])
-                    totalSquares += image[i][j]
-
-                    j++
+function optimizedSolution(image) {
+    const result = [];
+    for (let i = 0; i + 3 <= image.length; i++) {
+        result.push([]);
+        for (let j = 0; j + 3 <= image[0].length; j++) {
+            let totalSquares = 0;
+            for (let x = i; x < i + 3; x++) {
+                for (let y = j; y < j + 3; y++) {
+                    totalSquares += image[x][y];
                 }
-
-                i++
             }
-            // result [rows][columns] = Math.floor(totalSquares/9)
-            if(firstLoop){
-                console.log('Math.floor(totalSquares/9) '+Math.floor(totalSquares/9))
-                result[1] = []
-                console.log({rows, columns})
-                result[rows][columns] = (Math.floor(totalSquares / 9))
-                console.log({result})
-            }else{
-                result[0].push((Math.floor(totalSquares / 9)))
-            }
-
-
-            totalSquare += 0.5
-            columns++
-            firstLoop = true
+            result[i].push(Math.floor(totalSquares / 9));
         }
-        totalSquare++
-        rows++
     }
-
-    return result
+    return result;
 }
 
 
-console.log(solution(image))
+// function solution(image) {
+//     let totalSquare = 0
+//     let result = [[], []]
+//     let rows = 0
+//     let firstLoop = false
+//     while (rows + 3 <= image.length) {
+//         let columns = 0
+//         while (columns + 3 <= image[0].length) {
+//             let i = rows
+//             let totalSquares = 0
+//             while (i < (rows + 3)) {
+//                 let j = columns
+//                 while (j < (columns + 3)) {
+//                     totalSquares += image[i][j]
+//                     j++
+//                 }
+//                 i++
+//             }
+//             if (firstLoop) {
+//                 if (columns == 0) {
+//                     result[rows] = []
+//                 }
+//                 result[rows][columns] = (Math.floor(totalSquares / 9))
+//             } else {
+//                 result[0].push((Math.floor(totalSquares / 9)))
+//             }
+//             totalSquare += 0.5
+//             columns++
+//             firstLoop = true
+//         }
+//         totalSquare++
+//         rows++
+//     }
+//     result.map((e, index) => {
+//         if (e == '') {
+//             result.splice(index, 1);
+//         }
+//     })
+//     return result
+// }
+
+
+console.log(optimizedSolution(image4))
