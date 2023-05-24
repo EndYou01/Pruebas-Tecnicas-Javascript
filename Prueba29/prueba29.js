@@ -15,38 +15,21 @@
 // const cell2 = "C3"
 
 
-const cell1 = "A1"
-const cell2 = "H8"
+const cell1 = "B2"
+const cell2 = "H7"
 
 function solution(cell1, cell2) {
 
-    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
-    cell1.split("")
-    const cell1Letter = letters.indexOf(cell1[0].toLowerCase()) + 1
-    const cell1Number = parseInt(cell1[1])
-    console.log({ cell1Number, cell1Letter })
+    const total1 = letters.indexOf(cell1[0]) + 1 + parseInt(cell1[1])
+    console.log({ total1 })
 
-    cell2.split("")
-    const cell2Letter = letters.indexOf(cell2[0].toLowerCase()) + 1
-    const cell2Number = parseInt(cell2[1])
-    console.log({ cell2Number, cell2Letter })
+    const total2 = letters.indexOf(cell2[0]) + 1 + parseInt(cell2[1])
+    console.log({ total2 })
 
-    function compare(x) {
-        if (x % 2 == 0) {
-            return 'par'
-        } else {
-            return 'impar'
-        }
-    }
-
-    if (compare(cell1Number) == compare(cell2Number) && compare(cell1Letter) == compare(cell2Letter)) {
-        return true
-    } else if (compare(cell1Letter) == compare(cell1Number) && compare(cell2Letter) == compare(cell2Number)) {
-        return true
-    } else {
-        return false
-    }
+    return total1 % 2 == total2 % 2
+    
 }
 
 
@@ -66,12 +49,11 @@ function optimizedSolution1(cell1, cell2) {
     const total2 = board[cell2[0]] + parseInt(cell2[1]);
 
     return total1 % 2 === total2 % 2;
-
 }
 
 
 
-function optimizedSolution1() {
+function optimizedSolution2() {
     //Get the color (0=black, 1=white) for a given cell
     var color = s => (Buffer(s)[0] - s[1]) % 2
 
